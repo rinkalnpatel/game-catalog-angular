@@ -8,12 +8,7 @@ import { EnvName } from '@enums/environment.enum';
 // Packages
 import packageInfo from '../../package.json';
 
-const scheme = 'http://';
-const host   = 'localhost';
-const port   = ':5000';
-const path   = '/api/';
-
-const baseUrl = scheme + host + port + path;
+const baseUrl = 'https://free-to-play-games-database.p.rapidapi.com/api';
 
 export const environment = {
   production      : false,
@@ -22,6 +17,8 @@ export const environment = {
   envName         : EnvName.LOCAL,
   defaultLanguage : 'en',
   apiBaseUrl      : baseUrl,
+  apiHeaderKey    : 'b56a522c71msh28a11faa5289d4ep182042jsn91a11f1ed2cc',
+  apiHeaderHost   : 'free-to-play-games-database.p.rapidapi.com',
 };
 
 /*

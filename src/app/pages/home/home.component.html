@@ -3,9 +3,10 @@
 
     <app-progress-bar *ngIf="isLoading"></app-progress-bar>
 
-    <ng-container *ngIf="!isLoading">
-      <div class="text-center">
-        Let's start the project!
+    <ng-container *ngFor="let game of games">
+      <div>
+        {{game.title}}
+        <!-- <img src="{{game.thumbnail}}" /> -->
       </div>
     </ng-container>
 

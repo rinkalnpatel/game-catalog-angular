@@ -1,6 +1,8 @@
 // Angular modules
 import { Component } from '@angular/core';
 import { OnInit }    from '@angular/core';
+import { GamesService } from '../../shared/services/games.service';
+import { Game } from '@models/game.model';
 
 @Component({
   selector    : 'app-home',
@@ -10,21 +12,26 @@ import { OnInit }    from '@angular/core';
 export class HomeComponent implements OnInit
 {
   public isLoading : boolean = true;
-
+  public games: Game[] = [];
   constructor
   (
+    private gamesService: GamesService
   ) { }
 
   // -------------------------------------------------------------------------------
   // NOTE Init ---------------------------------------------------------------------
   // -------------------------------------------------------------------------------
 
-  public ngOnInit() : void
+  public async ngOnInit()
   {
     setTimeout(_ =>
     {
       this.isLoading = false;
     }, 2000);
+
+    // get all games
+    this.games = await this.gamesService.getAllGames();
+    console.log('all games loaded', this.games);
   }
 
   // -------------------------------------------------------------------------------
