@@ -3,6 +3,7 @@ import { Endpoint } from '../enums/endpoint.enum';
 import { environment as env } from '../../../environments/environment';
 import axios, { AxiosInstance, CreateAxiosDefaults } from 'axios';
 import { Game } from '../models/game.model';
+import { ToastManager } from '@blocks/toast/toast.manager';
 
 @Injectable({
   providedIn: 'root',
@@ -21,18 +22,31 @@ export class GamesService {
 
   private api: AxiosInstance = axios.create(this.default);
 
-  constructor() {}
+  constructor(private toastManager: ToastManager) {}
 
   public async getAllGames(): Promise<Game[]> {
-    const games = (await this.api.get(env.apiBaseUrl + '/' + Endpoint.GAMES))
-      .data;
+    try {
+      const games = (await this.api.get(env.apiBaseUrl + '/' + Endpoint.GAMES))
+        .data;
 
-    if (!games) {
-      // TODO - proper error handling
-      console.error('could not load game data from the API');
+      if (!games) {
+        // TODO - proper error handling
+        this.toastManager.quickShow(
+          'Empty game list returned from server',
+          'danger',
+          true
+        );
+      }
+
+      return games;
+    } catch (err) {
+      this.toastManager.quickShow(
+        'Error while loading game data',
+        'danger',
+        true
+      );
+      return [];
     }
-
-    return games;
   }
 
   public async getGameDetails(id: number): Promise<Game> {
