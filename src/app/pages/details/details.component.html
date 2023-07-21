@@ -1,0 +1,44 @@
+<app-page-layout>
+  <div class="row">
+    <ngb-carousel>
+      <ng-template
+        ngbSlide
+        *ngFor="let screenshot of game?.screenshots; let index = index"
+      >
+        <div class="picsum-img-wrapper">
+          <img
+            [src]="screenshot.image"
+            alt="Game screenshot"
+            style="width: 100%; height: 70vh"
+          />
+        </div>
+        <div class="carousel-caption">
+          <h3>Screenshot {{ index + 1 }}</h3>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+  <div class="row" *ngIf="game">
+    <div class="col-10 m-auto my-4">
+      <div class="card">
+        <div class="card-header">
+          <h5>
+            <b>{{ game.title }}</b>
+          </h5>
+        </div>
+        <div class="card-body">
+          <h6 class="card-title"><b>Publisher: </b> {{ game.publisher }}</h6>
+          <h6 class="card-title">
+            <b>Release Date: </b> {{ game.release_date }}
+          </h6>
+          <h6 class="card-title"><b>Platform: </b> {{ game.platform }}</h6>
+          <p class="card-text">
+            <b>Description: </b>
+            {{ game.description }}
+          </p>
+          <a routerLink="/home" class="btn btn-primary"><< Go Back</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-page-layout>

@@ -1,11 +1,17 @@
 <app-page-layout>
-  <app-search-bar (searchEvent)="onSearchEvent($event)"></app-search-bar>
   <div class="container">
-    <app-progress-bar *ngIf="isLoading"></app-progress-bar>
     <div class="row">
+      <div class="row text-center m-3" *ngIf="!favoriteGames.length">
+        <h1 class="display-5">You still do not have favorite games added.</h1>
+        <span>
+          You can add games to favorites by clicking 'Add to favorite' button in
+          the home page.</span
+        >
+      </div>
+
       <ng-container
         *ngFor="
-          let game of filteredGames
+          let game of favoriteGames
             | slice : (page - 1) * pageSize : page * pageSize
         "
       >
@@ -18,14 +24,8 @@
           <div class="card-body">
             <h5 class="card-title">{{ game.title }}</h5>
             <p class="card-text">{{ game.short_description }}</p>
-            <a class="btn btn-primary" (click)="openGameDetails(game.id)"
-              >More Details</a
-            >
-            <a
-              class="btn btn-primary m-2"
-              *ngIf="!favoriteService.existsOnFavorites(game.id)"
-              (click)="addGameToFavorite(game)"
-              >Add to Fav</a
+            <a class="btn btn-primary" (click)="removeGameToFavorite(game.id)"
+              >Remove from Fav</a
             >
           </div>
         </div>
@@ -33,10 +33,10 @@
     </div>
     <div>
       <ngb-pagination
-        *ngIf="filteredGames.length"
+        *ngIf="favoriteGames.length"
         [(page)]="page"
         [pageSize]="pageSize"
-        [collectionSize]="filteredGames.length"
+        [collectionSize]="favoriteGames.length"
         aria-label="Default pagination"
       ></ngb-pagination>
     </div>

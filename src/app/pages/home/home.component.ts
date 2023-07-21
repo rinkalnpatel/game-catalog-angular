@@ -2,8 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 import { GamesService } from '../../shared/services/games.service';
 import { Game } from '../../shared/models/game.model';
-import { Router, Params, ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import { FavoriteService } from '@services/favorite.service';
 
 @Component({
   selector: 'app-home',
@@ -20,26 +20,26 @@ export class HomeComponent implements OnInit {
   constructor(
     private gamesService: GamesService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    public favoriteService: FavoriteService
   ) {
     this.loadAllGames();
   }
 
   public async ngOnInit() {}
 
-  onSearchEvent(query: string) {
+  onSearchEvent(query: string): void {
     console.log('search emit receieved', query);
     this.searchGames(query);
   }
 
-  async loadAllGames() {
+  async loadAllGames(): Promise<void> {
     this.games = await this.gamesService.getAllGames();
     this.resetFilteredList();
     this.isLoading = false;
     console.log('all games loaded', this.games);
   }
 
-  async searchGames(query: string) {
+  searchGames(query: string) {
     console.log('searching games for query:', query);
     this.resetFilteredList();
 
@@ -54,12 +54,16 @@ export class HomeComponent implements OnInit {
     console.log('search result', this.filteredGames);
   }
 
-  resetFilteredList() {
+  resetFilteredList(): void {
     // reset filtered games copy to have all games
     this.filteredGames = this.games;
   }
 
-  openGameDetails(id: string): void {
+  openGameDetails(id: number): void {
     this.router.navigate(['details', id]);
+  }
+
+  addGameToFavorite(game: Game): void {
+    this.favoriteService.add(game);
   }
 }

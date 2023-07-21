@@ -5,6 +5,8 @@ import { RouterModule } from '@angular/router';
 
 // Components
 import { NotFoundComponent } from './static/not-found/not-found.component';
+import { DetailsComponent } from './pages/details/details.component';
+import { FavoritesComponent } from './pages/favorites/favorites.component';
 
 const routes: Routes = [
   {
@@ -13,6 +15,14 @@ const routes: Routes = [
       import('./pages/home/home.module').then((m) => m.HomeModule),
   },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
+  {
+    path: 'details/:id',
+    component: DetailsComponent,
+  },
+  {
+    path: 'favorites',
+    component: FavoritesComponent,
+  },
   { path: '**', component: NotFoundComponent },
 ];
 

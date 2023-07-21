@@ -2,9 +2,6 @@ import { Injectable } from '@angular/core';
 import { Endpoint } from '../enums/endpoint.enum';
 import { environment as env } from '../../../environments/environment';
 import axios, { AxiosInstance, CreateAxiosDefaults } from 'axios';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { forkJoin, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Game } from '../models/game.model';
 
 @Injectable({
@@ -13,7 +10,7 @@ import { Game } from '../models/game.model';
 export class GamesService {
   // Default configuration
   private default: CreateAxiosDefaults = {
-    timeout: 10000, // 10s
+    timeout: env.apiTimeout,
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
@@ -24,9 +21,9 @@ export class GamesService {
 
   private api: AxiosInstance = axios.create(this.default);
 
-  constructor(private http: HttpClient) {}
+  constructor() {}
 
-  public async getAllGames() {
+  public async getAllGames(): Promise<Game[]> {
     const games = (await this.api.get(env.apiBaseUrl + '/' + Endpoint.GAMES))
       .data;
 
@@ -36,5 +33,20 @@ export class GamesService {
     }
 
     return games;
+  }
+
+  public async getGameDetails(id: number): Promise<Game> {
+    const game = (
+      await this.api.get(env.apiBaseUrl + '/' + Endpoint.GAME, {
+        params: { id: id },
+      })
+    ).data;
+
+    if (!game) {
+      // TODO - proper error handling
+      console.error('could not load game data from the API');
+    }
+
+    return game;
   }
 }

@@ -1,4 +1,3 @@
-export enum StorageKey
-{
-  TOKEN = 'Token',
+export enum StorageKey {
+  FAVORITE_GAMES = 'favorite_games',
 }

@@ -29,6 +29,7 @@ import { PageLayoutComponent } from './components/layouts/page-layout/page-layou
 // Directives
 import { ModalWrapperDirective } from './directives/modal-wrapper.directive';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { DetailsComponent } from '../pages/details/details.component';
 
 @NgModule({
   imports: [
@@ -63,6 +64,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     // Directives
     ModalWrapperDirective,
     SearchBarComponent,
+    DetailsComponent,
   ],
   exports: [
     // Angular modules
@@ -80,6 +82,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     ToastComponent,
     ProgressBarComponent,
     SearchBarComponent,
+    DetailsComponent,
 
     // Forms
     FormConfirmComponent,
