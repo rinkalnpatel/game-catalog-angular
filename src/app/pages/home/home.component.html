@@ -18,11 +18,11 @@
           <div class="card-body">
             <h5 class="card-title">{{ game.title }}</h5>
             <p class="card-text">{{ game.short_description }}</p>
-            <a class="btn btn-primary" (click)="openGameDetails(game.id)"
+            <a class="btn btn-primary mx-2" (click)="openGameDetails(game.id)"
               >More Details</a
             >
             <a
-              class="btn btn-primary m-2"
+              class="btn btn-primary"
               *ngIf="!favoriteService.existsOnFavorites(game.id)"
               (click)="addGameToFavorite(game)"
               >Add to Fav</a
