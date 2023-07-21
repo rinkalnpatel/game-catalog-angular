@@ -1,14 +1,40 @@
 <app-page-layout>
-  <div class="container my-3">
-
+  <app-search-bar (searchEvent)="onSearchEvent($event)"></app-search-bar>
+  <div class="container">
     <app-progress-bar *ngIf="isLoading"></app-progress-bar>
-
-    <ng-container *ngFor="let game of games">
-      <div>
+    <div class="row">
+      <ng-container
+        *ngFor="
+          let game of filteredGames
+            | slice : (page - 1) * pageSize : page * pageSize
+        "
+      >
+        <!-- <div>
         {{game.title}}
-        <!-- <img src="{{game.thumbnail}}" /> -->
-      </div>
-    </ng-container>
+        <img src="{{game.thumbnail}}" /> 
+      </div> -->
 
+        <div class="card m-3 p-0" style="width: 18rem">
+          <img
+            class="card-img-top"
+            src="{{ game.thumbnail }}"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{ game.title }}</h5>
+            <p class="card-text">{{ game.short_description }}</p>
+            <a href="#" class="btn btn-primary">More Details</a>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <div>
+      <ngb-pagination
+        [(page)]="page"
+        [pageSize]="pageSize"
+        [collectionSize]="filteredGames.length"
+        aria-label="Default pagination"
+      ></ngb-pagination>
+    </div>
   </div>
 </app-page-layout>

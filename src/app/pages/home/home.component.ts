@@ -1,57 +1,65 @@
 // Angular modules
-import { Component } from '@angular/core';
-import { OnInit }    from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GamesService } from '../../shared/services/games.service';
-import { Game } from '@models/game.model';
+import { Game } from '../../shared/models/game.model';
+import { Router, Params, ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
-  selector    : 'app-home',
-  templateUrl : './home.component.html',
-  styleUrls   : ['./home.component.scss']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit
-{
-  public isLoading : boolean = true;
-  public games: Game[] = [];
-  constructor
-  (
-    private gamesService: GamesService
-  ) { }
+export class HomeComponent implements OnInit {
+  public isLoading: boolean = true;
+  public games: Game[] = []; // main games list
+  public filteredGames: Game[] = []; // copy of main games list to store filtered games
+  page = 1;
+  pageSize = 32;
 
-  // -------------------------------------------------------------------------------
-  // NOTE Init ---------------------------------------------------------------------
-  // -------------------------------------------------------------------------------
+  constructor(
+    private gamesService: GamesService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {
+    this.loadAllGames();
+  }
 
-  public async ngOnInit()
-  {
-    setTimeout(_ =>
-    {
-      this.isLoading = false;
-    }, 2000);
+  public async ngOnInit() {}
 
-    // get all games
+  onSearchEvent(query: string) {
+    console.log('search emit receieved', query);
+    this.searchGames(query);
+  }
+
+  async loadAllGames() {
     this.games = await this.gamesService.getAllGames();
+    this.resetFilteredList();
+    this.isLoading = false;
     console.log('all games loaded', this.games);
   }
 
-  // -------------------------------------------------------------------------------
-  // NOTE Actions ------------------------------------------------------------------
-  // -------------------------------------------------------------------------------
+  async searchGames(query: string) {
+    console.log('searching games for query:', query);
+    this.resetFilteredList();
 
-  // -------------------------------------------------------------------------------
-  // NOTE Computed props -----------------------------------------------------------
-  // -------------------------------------------------------------------------------
+    query = query.toLowerCase();
+    this.filteredGames = this.games.filter(
+      (game) =>
+        game.title.toLowerCase().includes(query) ||
+        game.short_description.toLowerCase().includes(query)
+    );
 
-  // -------------------------------------------------------------------------------
-  // NOTE Helpers ------------------------------------------------------------------
-  // -------------------------------------------------------------------------------
+    // update filtered games copy
+    console.log('search result', this.filteredGames);
+  }
 
-  // -------------------------------------------------------------------------------
-  // NOTE Requests -----------------------------------------------------------------
-  // -------------------------------------------------------------------------------
+  resetFilteredList() {
+    // reset filtered games copy to have all games
+    this.filteredGames = this.games;
+  }
 
-  // -------------------------------------------------------------------------------
-  // NOTE Subscriptions ------------------------------------------------------------
-  // -------------------------------------------------------------------------------
-
+  openGameDetails(id: string): void {
+    this.router.navigate(['details', id]);
+  }
 }

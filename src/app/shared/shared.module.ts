@@ -1,38 +1,37 @@
 // Angular modules
-import { CommonModule }               from '@angular/common';
-import { NgModule }                   from '@angular/core';
-import { FormsModule }                from '@angular/forms';
-import { ReactiveFormsModule }        from '@angular/forms';
-import { RouterModule }               from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 // External modules
-import { TranslateModule }            from '@ngx-translate/core';
-import { AngularSvgIconModule }       from 'angular-svg-icon';
-import { NgbModule }                  from '@ng-bootstrap/ng-bootstrap';
+import { TranslateModule } from '@ngx-translate/core';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Components
-import { ToastComponent }             from './components/blocks/toast/toast.component';
-import { ProgressBarComponent }       from './components/blocks/progress-bar/progress-bar.component';
+import { ToastComponent } from './components/blocks/toast/toast.component';
+import { ProgressBarComponent } from './components/blocks/progress-bar/progress-bar.component';
 
 // Forms
-import { FormConfirmComponent }      from './components/forms/form-confirm/form-confirm.component';
+import { FormConfirmComponent } from './components/forms/form-confirm/form-confirm.component';
 
 // Modals
-import { ModalWrapperComponent }     from './components/modals/modal-wrapper/modal-wrapper.component';
+import { ModalWrapperComponent } from './components/modals/modal-wrapper/modal-wrapper.component';
 
 // Layouts
-import { LayoutHeaderComponent }     from './components/layouts/layout-header/layout-header.component';
-import { PageLayoutComponent }       from './components/layouts/page-layout/page-layout.component';
+import { LayoutHeaderComponent } from './components/layouts/layout-header/layout-header.component';
+import { PageLayoutComponent } from './components/layouts/page-layout/page-layout.component';
 
 // Pipes
 
 // Directives
-import { ModalWrapperDirective }     from './directives/modal-wrapper.directive';
-
+import { ModalWrapperDirective } from './directives/modal-wrapper.directive';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
 
 @NgModule({
-  imports         :
-  [
+  imports: [
     // Angular modules
     CommonModule,
     RouterModule,
@@ -44,8 +43,7 @@ import { ModalWrapperDirective }     from './directives/modal-wrapper.directive'
     AngularSvgIconModule,
     NgbModule,
   ],
-  declarations    :
-  [
+  declarations: [
     // Components
     ToastComponent,
     ProgressBarComponent,
@@ -63,10 +61,10 @@ import { ModalWrapperDirective }     from './directives/modal-wrapper.directive'
     // Pipes
 
     // Directives
-    ModalWrapperDirective
+    ModalWrapperDirective,
+    SearchBarComponent,
   ],
-  exports         :
-  [
+  exports: [
     // Angular modules
     CommonModule,
     RouterModule,
@@ -81,6 +79,7 @@ import { ModalWrapperDirective }     from './directives/modal-wrapper.directive'
     // Components
     ToastComponent,
     ProgressBarComponent,
+    SearchBarComponent,
 
     // Forms
     FormConfirmComponent,
@@ -95,10 +94,8 @@ import { ModalWrapperDirective }     from './directives/modal-wrapper.directive'
     // Pipes
 
     // Directives
-    ModalWrapperDirective
+    ModalWrapperDirective,
   ],
-  providers       :
-  [
-  ]
+  providers: [],
 })
 export class SharedModule {}
