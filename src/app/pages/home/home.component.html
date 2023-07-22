@@ -2,7 +2,7 @@
   <div class="container">
     <app-progress-bar *ngIf="isLoading"></app-progress-bar>
     <div class="row">
-      <div class="col mt-auto">
+      <div class="col-6 mt-auto">
         <span>Filters</span>
         <div ngbDropdown class="d-inline-block mx-1">
           <button
@@ -55,13 +55,16 @@
           type="button"
           class="btn btn-outline-danger me-2 mx-1"
           (click)="
-            resetFilteredList(); selectedGenre = ''; selectedPlatform = ''
+            resetFilteredList();
+            selectedGenre = '';
+            selectedPlatform = '';
+            searchTerm = ''
           "
         >
           Clear Results
         </button>
       </div>
-      <div class="col">
+      <div class="col-5 ml-4">
         <app-search-bar (searchEvent)="onSearchEvent($event)"></app-search-bar>
       </div>
     </div>
@@ -79,9 +82,20 @@
             alt="Card image cap"
           />
           <div class="card-body d-flex flex-column">
-            <h5 class="card-title">{{ game.title }}</h5>
+            <h5
+              class="card-title"
+              appHighlight
+              [searchedWords]="[searchTerm]"
+              [text]="game.title"
+              classToApply="selected"
+            ></h5>
             <p class="card-text"><b>Genre:</b> {{ game.genre }}</p>
-            <p class="card-text">{{ game.short_description }}</p>
+            <p
+              appHighlight
+              [searchedWords]="[searchTerm]"
+              [text]="game.short_description"
+              classToApply="selected"
+            ></p>
             <div class="mt-auto">
               <a class="btn btn-primary" (click)="openGameDetails(game.id)"
                 >More Details</a
@@ -97,7 +111,7 @@
         </div>
       </ng-container>
     </div>
-    <div>
+    <div class="row">
       <ngb-pagination
         *ngIf="filteredGames.length"
         [(page)]="page"

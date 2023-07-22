@@ -30,6 +30,7 @@ import { PageLayoutComponent } from './components/layouts/page-layout/page-layou
 import { ModalWrapperDirective } from './directives/modal-wrapper.directive';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { DetailsComponent } from '../pages/details/details.component';
+import { HighlightDirective } from './directives/highlight.directive';
 
 @NgModule({
   imports: [
@@ -65,6 +66,7 @@ import { DetailsComponent } from '../pages/details/details.component';
     ModalWrapperDirective,
     SearchBarComponent,
     DetailsComponent,
+    HighlightDirective,
   ],
   exports: [
     // Angular modules
@@ -98,6 +100,7 @@ import { DetailsComponent } from '../pages/details/details.component';
 
     // Directives
     ModalWrapperDirective,
+    HighlightDirective,
   ],
   providers: [],
 })

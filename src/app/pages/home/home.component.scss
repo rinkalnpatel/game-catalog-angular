@@ -63,6 +63,8 @@
     overflow: hidden;
   }
 
+  
+
   &-platforms {
     display: flex;
   }
@@ -71,4 +73,7 @@
     width: 20px;
     margin-right: 10px;
   }
+}
+.ml-4 {
+  margin-left: 4rem;
 }

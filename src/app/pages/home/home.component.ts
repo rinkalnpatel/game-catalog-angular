@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit {
   // for pagination
   public page = 1;
   public pageSize = 32;
+  public searchTerm: string;
 
   constructor(
     private gamesService: GamesService,
@@ -38,6 +39,7 @@ export class HomeComponent implements OnInit {
   onSearchEvent(query: string): void {
     console.log('search emit receieved', query);
     this.searchGames(query);
+    this.searchTerm = query;
   }
 
   async loadAllGames(): Promise<void> {
