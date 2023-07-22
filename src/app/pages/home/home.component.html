@@ -1,7 +1,70 @@
 <app-page-layout>
-  <app-search-bar (searchEvent)="onSearchEvent($event)"></app-search-bar>
   <div class="container">
     <app-progress-bar *ngIf="isLoading"></app-progress-bar>
+    <div class="row">
+      <div class="col mt-auto">
+        <span>Filters</span>
+        <div ngbDropdown class="d-inline-block mx-1">
+          <button
+            type="button"
+            class="btn btn-outline-primary"
+            id="dropdownBasic1"
+            ngbDropdownToggle
+          >
+            {{ selectedGenre ? selectedGenre : "Game Genre" }}
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button
+              ngbDropdownItem
+              *ngFor="let genre of genres"
+              (click)="
+                filterGamesByGenre(genre);
+                selectedGenre = genre;
+                selectedPlatform = ''
+              "
+            >
+              {{ genre }}
+            </button>
+          </div>
+        </div>
+        <div ngbDropdown class="d-inline-block mx-1">
+          <button
+            type="button"
+            class="btn btn-outline-primary"
+            id="dropdownBasic1"
+            ngbDropdownToggle
+          >
+            {{ selectedPlatform ? selectedPlatform : "Game Platform" }}
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button
+              ngbDropdownItem
+              *ngFor="let platform of platforms"
+              (click)="
+                filterGamesByPlatform(platform);
+                selectedPlatform = platform;
+                selectedGenre = ''
+              "
+            >
+              {{ platform }}
+            </button>
+          </div>
+        </div>
+        <button
+          *ngIf="filteredGames.length < games.length"
+          type="button"
+          class="btn btn-outline-danger me-2 mx-1"
+          (click)="
+            resetFilteredList(); selectedGenre = ''; selectedPlatform = ''
+          "
+        >
+          Clear Results
+        </button>
+      </div>
+      <div class="col">
+        <app-search-bar (searchEvent)="onSearchEvent($event)"></app-search-bar>
+      </div>
+    </div>
     <div class="row">
       <ng-container
         *ngFor="

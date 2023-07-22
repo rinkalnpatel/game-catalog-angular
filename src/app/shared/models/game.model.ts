@@ -8,6 +8,7 @@ export interface Game {
   publisher: string;
   release_date: Date;
   platform: string;
+  genre: string;
   screenshots: Screenshot[];
 }
 

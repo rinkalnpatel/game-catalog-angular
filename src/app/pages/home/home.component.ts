@@ -14,8 +14,16 @@ export class HomeComponent implements OnInit {
   public isLoading: boolean = true;
   public games: Game[] = []; // main games list
   public filteredGames: Game[] = []; // copy of main games list to store filtered games
-  page = 1;
-  pageSize = 32;
+
+  // custom filters
+  public genres: string[] = [];
+  public platforms: string[] = [];
+  public selectedGenre: string = '';
+  public selectedPlatform: string = '';
+
+  // for pagination
+  public page = 1;
+  public pageSize = 32;
 
   constructor(
     private gamesService: GamesService,
@@ -35,6 +43,8 @@ export class HomeComponent implements OnInit {
   async loadAllGames(): Promise<void> {
     this.games = await this.gamesService.getAllGames();
     this.resetFilteredList();
+    this.loadGenres();
+    this.loadPlatforms();
     this.isLoading = false;
     console.log('all games loaded', this.games);
   }
@@ -65,5 +75,23 @@ export class HomeComponent implements OnInit {
 
   addGameToFavorite(game: Game): void {
     this.favoriteService.add(game);
+  }
+
+  loadGenres(): void {
+    this.genres = [...new Set(this.games.map((game) => game.genre))];
+    console.log('genres', this.genres);
+  }
+
+  loadPlatforms(): void {
+    this.platforms = [...new Set(this.games.map((game) => game.platform))];
+    console.log('platforms', this.platforms);
+  }
+
+  filterGamesByGenre(genre: string): void {
+    this.filteredGames = this.games.filter((game) => game.genre == genre);
+  }
+
+  filterGamesByPlatform(platform: string): void {
+    this.filteredGames = this.games.filter((game) => game.platform == platform);
   }
 }
