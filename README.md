@@ -2,32 +2,13 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.0.
 
-## Usage
-- Rename `GameCatalog` and `game-catalog` with your project name
-- Place favicon generated with [RealFavIconGenerator](https://realfavicongenerator.net/) into `src/assets/img/favicon` folder
-
 ## Tools
+
 - Generate models form JSON - https://app.quicktype.io/
 - Generate favicon from SVG - https://realfavicongenerator.net/
 
-## Boilerplate content
-
-### Source code
-- Pages :
-  - Auth (login, forgot pwd, validate account) with 2 possible layouts
-  - Home
-  - 404
-- Shared components
-  - Blocks : toast & progress bar
-  - Forms : confirm
-  - Layouts : page & header
-  - Modals : wrapper
-- Enums : endpoints / environments / storage keys
-- Helpers : storage / string
-- Services : app (for requests) / store (for state management)
-- I18n : en.json
-
 ### Packages
+
 - [Bootstrap 5](https://getbootstrap.com/) scss style & [ng-bootstrap](https://ng-bootstrap.github.io/) components
 - [Axios](https://github.com/axios/axios) fetch wrapper
 - [ArrayTyper](https://github.com/FranzStrudel/-caliatys-array-typer)

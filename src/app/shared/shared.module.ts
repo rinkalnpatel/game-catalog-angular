@@ -14,12 +14,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastComponent } from './components/blocks/toast/toast.component';
 import { ProgressBarComponent } from './components/blocks/progress-bar/progress-bar.component';
 
-// Forms
-import { FormConfirmComponent } from './components/forms/form-confirm/form-confirm.component';
-
-// Modals
-import { ModalWrapperComponent } from './components/modals/modal-wrapper/modal-wrapper.component';
-
 // Layouts
 import { LayoutHeaderComponent } from './components/layouts/layout-header/layout-header.component';
 import { PageLayoutComponent } from './components/layouts/page-layout/page-layout.component';
@@ -27,7 +21,6 @@ import { PageLayoutComponent } from './components/layouts/page-layout/page-layou
 // Pipes
 
 // Directives
-import { ModalWrapperDirective } from './directives/modal-wrapper.directive';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { DetailsComponent } from '../pages/details/details.component';
 import { HighlightDirective } from './directives/highlight.directive';
@@ -50,20 +43,11 @@ import { HighlightDirective } from './directives/highlight.directive';
     ToastComponent,
     ProgressBarComponent,
 
-    // Forms
-    FormConfirmComponent,
-
-    // Modals
-    ModalWrapperComponent,
-
     // Layouts
     LayoutHeaderComponent,
     PageLayoutComponent,
 
-    // Pipes
-
     // Directives
-    ModalWrapperDirective,
     SearchBarComponent,
     DetailsComponent,
     HighlightDirective,
@@ -86,20 +70,11 @@ import { HighlightDirective } from './directives/highlight.directive';
     SearchBarComponent,
     DetailsComponent,
 
-    // Forms
-    FormConfirmComponent,
-
-    // Modals
-    ModalWrapperComponent,
-
     // Layouts
     LayoutHeaderComponent,
     PageLayoutComponent,
 
-    // Pipes
-
     // Directives
-    ModalWrapperDirective,
     HighlightDirective,
   ],
   providers: [],

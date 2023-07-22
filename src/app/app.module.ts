@@ -21,7 +21,6 @@ import { SharedModule } from './shared/shared.module';
 import { StaticModule } from './static/static.module';
 
 // Services
-import { AppService } from '@services/app.service';
 import { StoreService } from '@services/store.service';
 import { FavoriteService } from '@services/favorite.service';
 
@@ -65,7 +64,6 @@ import { FavoritesComponent } from './pages/favorites/favorites.component';
     },
 
     // Services
-    AppService,
     StoreService,
     FavoriteService,
 

@@ -1,22 +1,15 @@
 // Angular modules
-import { NgModule }            from '@angular/core';
+import { NgModule } from '@angular/core';
 
 // Internal modules
-import { SharedModule }        from '../shared/shared.module';
+import { SharedModule } from '../shared/shared.module';
 
 // Components
 import { StaticRoutingModule } from './static-routing.module';
-import { NotFoundComponent }   from './not-found/not-found.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
-  imports      :
-  [
-    SharedModule,
-    StaticRoutingModule
-  ],
-  declarations :
-  [
-    NotFoundComponent
-  ]
+  imports: [SharedModule, StaticRoutingModule],
+  declarations: [NotFoundComponent],
 })
 export class StaticModule {}
